@@ -1,0 +1,1 @@
+Manera de encontrar el director de una peli: entrar a movie.credits y buscar el que tenga en department "Directing" y en job "Director"
