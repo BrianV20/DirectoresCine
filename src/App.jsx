@@ -16,19 +16,19 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    fetch('https://api.themoviedb.org/3/movie/4307', options)
-  .then(response => response.json())
-  .then(response => setPrueba(response))
-  .catch(err => console.error(err))
-}, []);
+//   useEffect(() => {
+//     fetch('https://api.themoviedb.org/3/movie/4307', options)
+//   .then(response => response.json())
+//   .then(response => setPrueba(response))
+//   .catch(err => console.error(err))
+// }, []);
 
   return (
     <>
     {prueba != undefined ? (
       <>
-        {console.log("PRUEBAA: " + (IMAGE_PATH + prueba.poster_path))}
-        <img src={`${IMAGE_PATH + prueba.poster_path}`} alt="" />
+        {/* {console.log("PRUEBAA: " + (IMAGE_PATH + prueba.poster_path))}
+        <img src={`${IMAGE_PATH + prueba.poster_path}`} alt="" /> */}
       </>
     ) : ''}
     </>

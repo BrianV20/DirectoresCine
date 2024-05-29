@@ -1,1 +1,11 @@
 Manera de encontrar el director de una peli: entrar a movie.credits y buscar el que tenga en department "Directing" y en job "Director"
+
+Componentes: Movie (pelicula y serie chiquita que se ve en la vista del director).
+             MovieContainer: (contenedor de peliculas).
+             DirectorInfo: (parte donde está el nombre y la descripción del director).
+             MovieInfoContainer: (contenedor donde va a estar la info de una peli cuando se acceda a esta, osea la vista por id).
+             SearchBar: (barra de búsqueda).
+             Result: (resultado al realizar una búsqueda).
+             ResultsContainer: (contenedor de results).
+             Navbar: (navbar donde estará la SearchBar).
+             Footer: (footer en común para todsa las vistas).
