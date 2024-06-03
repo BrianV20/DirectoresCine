@@ -1,20 +1,13 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect, createContext } from 'react';
+import './App.css';
+import SearchBar from './Components/SearchBar';
+import DirectorInfo from './Components/DirectorInfo';
+import { DirectorContext } from './Contexts';
+import Movie from './Components/Movie';
 
 function App() {
-  const [prueba, setPrueba] = useState();
-
-  const API_URL = "https://api.themoviedb.org/3";
-  const API_KEY = "477f4d6529b7a1d0aa06d64e646724c4";
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/original"
-
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NzdmNGQ2NTI5YjdhMWQwYWEwNmQ2NGU2NDY3MjRjNCIsInN1YiI6IjY2NDNlYjJlNjE3MTMyYTVhZjJiNTI1MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.47o2FD4djkORpW-_r3CYi7_x9q7BPfo6BI1iXIP38BI'
-    }
-  };
+  // const [prueba, setPrueba] = useState();
+  const [directorId, setDirectorId] = useState(309);
 
 //   useEffect(() => {
 //     fetch('https://api.themoviedb.org/3/movie/4307', options)
@@ -25,12 +18,27 @@ function App() {
 
   return (
     <>
-    {prueba != undefined ? (
+    <div className='bg-blue-300 p-4 mx-2 my-5'>
+      <button onClick={() => setDirectorId(309)}>
+        Id 309
+      </button>
+      <button onClick={() => setDirectorId(403)}>
+        Id 403
+      </button>
+    </div>
+    <SearchBar />
+    <DirectorContext.Provider value={{directorId, setDirectorId}}>
+      <div className='CONTENEDOR DE LAS COSAS PARA PONER EL FONDO DE LA IMAGEN DEL DIRECTOR'>
+        <DirectorInfo />
+        <Movie />
+      </div>
+    </DirectorContext.Provider>
+    {/* {prueba != undefined ? (
       <>
-        {/* {console.log("PRUEBAA: " + (IMAGE_PATH + prueba.poster_path))}
-        <img src={`${IMAGE_PATH + prueba.poster_path}`} alt="" /> */}
+        {console.log("PRUEBAA: " + (IMAGE_PATH + prueba.poster_path))}
+        <img src={`${IMAGE_PATH + prueba.poster_path}`} alt="" />
       </>
-    ) : ''}
+    ) : ''} */}
     </>
   )
 }

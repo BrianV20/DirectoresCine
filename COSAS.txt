@@ -1,11 +1,28 @@
 Manera de encontrar el director de una peli: entrar a movie.credits y buscar el que tenga en department "Directing" y en job "Director"
 
-Componentes: Movie (pelicula y serie chiquita que se ve en la vista del director).
+Como encontrar las peliculas de un director:
+    1) Acceder a Person - Movie credits con el id del director.
+    2) Con el id de cada Movie Credit accedo a cada pelicula a la parte de Credits y busco a las personas que tienen el valor "Directing" en la propiedad "known_for_department" y cuyo id sea el id del director (que ya lo tengo desde un principio).
+    3) Si encuentro que el director cumple esos requisitos entonces esa pelicula fué dirigida por el director.
+
+    Por ejemplo: Director: Pedro Almodóvar (Id: 309).
+    a) fetch('https://api.themoviedb.org/3/person/309/movie_credits', options)
+    b) De cada resultado (pelicula) voy a acceder al id y voy a hacer un fetch de lo siguiente fetch('https://api.themoviedb.org/3/movie/219/credits', options). En este caso la pelicula es Volver (2006).
+    c) En ese resultado busco a la persona que tenga el id del director (309), el valor "Directing" en la propiedad "known_for_department" y el valor "Director" en la propiedad "job" (esta propiedad verificar si existe, la misma ayuda a tener un resultado más especifico porque a veces un mismo director puede también tener el "job" de writer, screenplay etc).
+
+Componentes: DirectorInfo: (parte donde está el nombre y la descripción del director. Por defecto debería abrir la  vista del director Pedro Almodóvar, porque si). TODO: falta estilo y funcionalidad.
+             SearchBar: (barra de búsqueda). TODO: Falta funcionalidad.
+             Movie (pelicula y serie chiquita que se ve en la vista del director).
              MovieContainer: (contenedor de peliculas).
-             DirectorInfo: (parte donde está el nombre y la descripción del director).
              MovieInfoContainer: (contenedor donde va a estar la info de una peli cuando se acceda a esta, osea la vista por id).
-             SearchBar: (barra de búsqueda).
              Result: (resultado al realizar una búsqueda).
              ResultsContainer: (contenedor de results).
              Navbar: (navbar donde estará la SearchBar).
              Footer: (footer en común para todsa las vistas).
+
+Colores: principal: #231942 #301934  #003262
+         secundario: #309BFF
+         terciario: #FFFFFF
+
+
+Detalles: a) ver bien la forma en que filtro las pelis del director, porque parece que se traen demasiadas pelis.
