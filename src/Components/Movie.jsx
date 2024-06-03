@@ -7,6 +7,7 @@ export default function Movie() {
     const [movieInfo, setMovieInfo] = useState({});
     const { directorId, setDirectorId } = useContext(DirectorContext);
     const [movieCredits, setMovieCredits] = useState([]);
+    const [directedMovies, setDirectedMovies] = useState([]);
 
     useEffect(() => {
         //Esta función trae la información de cada trabajo que se hizo en las peliculas en las que colaboró el director.
@@ -15,8 +16,8 @@ export default function Movie() {
             // const newarray = [...movies].filter(mov => mov.id != undefined);
             const arrayOfMovies = [];
             // console.log(newarray);
-            for(let i = 0; i < newarray.length; i++){
-                if(newarray[i] != undefined){
+            for (let i = 0; i < newarray.length; i++) {
+                if (newarray[i] != undefined) {
                     const response = await fetch(`${API_URL}/movie/${newarray[i].id}/credits`, options);
                     const data = await response.json();
                     arrayOfMovies.push(data);
@@ -31,22 +32,23 @@ export default function Movie() {
         const filterTheOnesDirectedByTheDirector = async () => {
             let movies = await fetchCreditsByMovie(movieCredits);
             let prueba = [];
-            for(let i = 0; i < movies.length; i++){
-                for(let j = 0; j < movies[i].crew.length; j++){
-                    if(movies[i].crew[j] != undefined){
-                        if(movies[i].crew[j].id == directorId){
-                            if(movies[i].crew[j].known_for_department == "Directing"){
-                                if(movies[i].crew[j].job){
-                                    if(movies[i].crew[j].job == "Director"){
-                                        prueba.push({idOfMovie: movies[i].id,
-                                            infoOfDirectorRole: movies[i].crew[j]});
+            for (let i = 0; i < movies.length; i++) {
+                for (let j = 0; j < movies[i].crew.length; j++) {
+                    if (movies[i].crew[j] != undefined) {
+                        if (movies[i].crew[j].id == directorId) {
+                            if (movies[i].crew[j].known_for_department == "Directing") {
+                                if (movies[i].crew[j].job) {
+                                    if (movies[i].crew[j].job == "Director") {
+                                        prueba.push({
+                                            idOfMovie: movies[i].id,
+                                            infoOfDirectorRole: movies[i].crew[j]
+                                        });
                                         // console.log(movies[i].id);
                                         // console.log("Id pelicula: " + movies[i].id + "\n" + movies[i].crew[j]);
                                         // console.log(`Id pelicula: ${movies[i].id}.\nNombre persona: ${movies[i].crew[j].name}.\nknown_for_department: ${movies[i].crew[j].known_for_department}.\nJob: ${movies[i].crew[j].job}`);
                                     }
                                 }
                             }
-                            // console.log("Pelicula: " + movies[i].id + "\n" + movies[i].crew[j]);
                         }
                     }
                 }
@@ -61,20 +63,23 @@ export default function Movie() {
                     return acc;
                 }
             }, []);
-            console.log(uniqueArray);
             return uniqueArray;
-            // console.log("LONGITUD DE PRUEBA: " + prueba.length);
         };
 
         //Función que se va a encargar de traer la informacion de las peliculas ya filtradas con filterTheOnesDirectedByTheDirector en base a la propiedad idOfMovie de cada objeto.
         const getInfoOfFilteredMovies = async () => {
             let arrayOfMovies = await filterTheOnesDirectedByTheDirector();
-            // FILTRARRRRR
+            let infoOfFilteredMovies = [];
+            for (let i = 0; i < arrayOfMovies.length; i++) {
+                const response = await fetch(`${API_URL}/movie/${arrayOfMovies[i].idOfMovie}`, options)
+                const data = await response.json();
+                infoOfFilteredMovies.push(data);
+            }
+            console.log(infoOfFilteredMovies);
+            setDirectedMovies(infoOfFilteredMovies);
         };
 
-
-        filterTheOnesDirectedByTheDirector();
-        // fetchCreditsByMovie(movieCredits);
+        getInfoOfFilteredMovies();
     }, [movieCredits]);
 
     useEffect(() => {
@@ -83,9 +88,9 @@ export default function Movie() {
             let arrayOfRemarcableFilms = [];
             const response = await fetch(`${API_URL}/person/${directorId}/movie_credits`, options);
             const data = await response.json();
-            for(let i = 0; i < data.crew.length; i++){
+            for (let i = 0; i < data.crew.length; i++) {
                 // console.log("Peli id:" + data.crew[i].id + "\nPopularity: " + Number(data.crew[i].popularity));
-                if(Number(data.crew[i].popularity) > 5){
+                if (Number(data.crew[i].popularity) > 5) {
                     arrayOfRemarcableFilms.push(data.crew[i]);
                     // console.log("Peli id:" + data.crew[i].id + "\nPopularity: " + Number(data.crew[i].popularity));
                 }
@@ -104,6 +109,18 @@ export default function Movie() {
 
     return (
         <>
+            {directedMovies.length > 0 ? (
+                <div className="flex bg-green-200 rounded-lg border-solid border-indigo-600 flex-wrap border-2">
+                    {directedMovies.map((movie) => {
+                        return (
+                            <div className="flex flex-col border-solid border-black p-1 mx-2 my-4 border-2">
+                                <p>Id: {movie.id}.</p>
+                                <p>Titulo: {movie.title}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            ) : 'loading...'}
             {/* {console.log(movieCredits)} */}
             {/* <button onClick={() => setDirectorId(309)}>
                 Id 309

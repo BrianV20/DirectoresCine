@@ -5,7 +5,7 @@ export default function DirectorInfo() {
     const [director, setDirector] = useState({});
 
     useEffect(() => {
-        fetch(`${API_URL}/person/42`, options)
+        fetch(`${API_URL}/person/309`, options)
         .then(response => response.json())
         .then(response => setDirector(response))
     }, []);

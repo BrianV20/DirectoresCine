@@ -10,9 +10,10 @@ Como encontrar las peliculas de un director:
     b) De cada resultado (pelicula) voy a acceder al id y voy a hacer un fetch de lo siguiente fetch('https://api.themoviedb.org/3/movie/219/credits', options). En este caso la pelicula es Volver (2006).
     c) En ese resultado busco a la persona que tenga el id del director (309), el valor "Directing" en la propiedad "known_for_department" y el valor "Director" en la propiedad "job" (esta propiedad verificar si existe, la misma ayuda a tener un resultado más especifico porque a veces un mismo director puede también tener el "job" de writer, screenplay etc).
 
-Componentes: DirectorInfo: (parte donde está el nombre y la descripción del director. Por defecto debería abrir la  vista del director Pedro Almodóvar, porque si). TODO: falta estilo y funcionalidad.
+Componentes: 
+            DirectorInfo: (parte donde está el nombre y la descripción del director. Por defecto debería abrir la  vista del director Pedro Almodóvar, porque si). TODO: falta estilo y funcionalidad.
              SearchBar: (barra de búsqueda). TODO: Falta funcionalidad.
-             Movie (pelicula y serie chiquita que se ve en la vista del director).
+             Movie (pelicula y serie chiquita que se ve en la vista del director). Falta logica para que cuando haga click en una peli me rediriga a la ruta correspondiente. Falta estilos.
              MovieContainer: (contenedor de peliculas).
              MovieInfoContainer: (contenedor donde va a estar la info de una peli cuando se acceda a esta, osea la vista por id).
              Result: (resultado al realizar una búsqueda).
@@ -20,9 +21,7 @@ Componentes: DirectorInfo: (parte donde está el nombre y la descripción del di
              Navbar: (navbar donde estará la SearchBar).
              Footer: (footer en común para todsa las vistas).
 
+
 Colores: principal: #231942 #301934  #003262
          secundario: #309BFF
          terciario: #FFFFFF
-
-
-Detalles: a) ver bien la forma en que filtro las pelis del director, porque parece que se traen demasiadas pelis.
