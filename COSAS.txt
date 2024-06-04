@@ -11,15 +11,20 @@ Como encontrar las peliculas de un director:
     c) En ese resultado busco a la persona que tenga el id del director (309), el valor "Directing" en la propiedad "known_for_department" y el valor "Director" en la propiedad "job" (esta propiedad verificar si existe, la misma ayuda a tener un resultado más especifico porque a veces un mismo director puede también tener el "job" de writer, screenplay etc).
 
 Componentes: 
-            DirectorInfo: (parte donde está el nombre y la descripción del director. Por defecto debería abrir la  vista del director Pedro Almodóvar, porque si). TODO: falta estilo y funcionalidad.
-             SearchBar: (barra de búsqueda). TODO: Falta funcionalidad.
-             Movie (pelicula y serie chiquita que se ve en la vista del director). Falta logica para que cuando haga click en una peli me rediriga a la ruta correspondiente. Falta estilos.
-             MovieContainer: (contenedor de peliculas).
-             MovieInfoContainer: (contenedor donde va a estar la info de una peli cuando se acceda a esta, osea la vista por id).
-             Result: (resultado al realizar una búsqueda).
-             ResultsContainer: (contenedor de results).
-             Navbar: (navbar donde estará la SearchBar).
-             Footer: (footer en común para todsa las vistas).
+            DirectorInfo: (parte donde está el nombre y la descripción del director. Por defecto debería abrir la  vista del director Pedro Almodóvar, porque si). -- Falta estilo y funcionalidad.
+            DirectorContainerComponent: (Componente que se renderizará en la ruta director/directorId).
+
+            MovieContainer: (componente que hará la lógica para devolver las Movie). -- Falta logica para que cuando haga click en una peli me rediriga a la ruta correspondiente. Falta estilos.
+            Movie: (pelicula y serie chiquita que se ve en la vista del director y que está dentro de MovieContainer).
+            MovieByIdInfoContainer: (Componente que tendrá la informacion de la peli que se verá cuando se acceda a la ruta movie/movieId. Es tipo el DirectorInfo).
+            MovieContainerComponent: (component que se renderizará cuando se acceda a movie/movieId).
+
+            SearchBar: (barra de búsqueda). -- Falta funcionalidad.
+            Result: (resultado al realizar una búsqueda).
+            ResultsContainer: (contenedor de results).
+             
+            Navbar: (navbar donde estará la SearchBar).
+            Footer: (footer en común para todsa las vistas).
 
 
 Colores: principal: #231942 #301934  #003262
