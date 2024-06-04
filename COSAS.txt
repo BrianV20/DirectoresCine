@@ -23,8 +23,8 @@ Componentes:
             Result: (resultado al realizar una búsqueda).
             ResultsContainer: (contenedor de results).
              
-            Navbar: (navbar donde estará la SearchBar).
-            Footer: (footer en común para todsa las vistas).
+            Navbar: (navbar donde estará la SearchBar). Falta estilo.
+            Footer: (footer en común para todsa las vistas). Falta estilo.
 
 
 Colores: principal: #231942 #301934  #003262

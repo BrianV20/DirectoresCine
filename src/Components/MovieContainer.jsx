@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { API_KEY, API_URL, IMAGE_PATH, options } from '../../constants';
+import { API_KEY, API_URL, IMAGE_PATH, options } from '../constants';
 import { DirectorContext } from "../Contexts";
 import Movie from "./Movie";
 

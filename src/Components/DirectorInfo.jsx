@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_KEY, API_URL, IMAGE_PATH, options } from '../../constants';
+import { API_KEY, API_URL, IMAGE_PATH, options } from '../constants';
 
 export default function DirectorInfo() {
     const [director, setDirector] = useState({});

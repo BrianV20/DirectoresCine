@@ -1,4 +1,4 @@
-import { IMAGE_PATH } from "../../constants"
+import { IMAGE_PATH } from "../constants"
 import { Link } from "react-router-dom"
 
 export default function Movie({ movieInfo }) {
