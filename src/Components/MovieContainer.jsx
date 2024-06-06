@@ -2,13 +2,16 @@ import React, { useState, useContext, useEffect } from "react";
 import { API_KEY, API_URL, IMAGE_PATH, options } from '../constants';
 import { DirectorContext } from "../Contexts";
 import Movie from "./Movie";
+import { useLocation } from "react-router-dom";
 
 
-export default function MovieContainer() {
+export default function MovieContainer({ aboveText }) {
     const [movieInfo, setMovieInfo] = useState({});
     const { directorId, setDirectorId } = useContext(DirectorContext);
+    const [directorObject, setDirectorObject] = useState({});
     const [movieCredits, setMovieCredits] = useState([]);
     const [directedMovies, setDirectedMovies] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         //Esta función trae la información de cada trabajo que se hizo en las peliculas en las que colaboró el director.
@@ -101,15 +104,28 @@ export default function MovieContainer() {
             //     console.log("NUMERO: " + ard[i]);
             // }
             setMovieCredits(arrayOfRemarcableFilms);
+            getTheDirector();
             // setMovieCredits(data.crew);
             // console.log(data.crew);
             // console.log(movieCredits);
+        };
+
+        const getTheDirector = async () => {
+            const response = await fetch(`${API_URL}/person/${directorId}`, options);
+            const data = await response.json();
+            setDirectorObject(data);
         };
         fetchMovieCredits();
     }, [directorId]);
 
     return (
         <>
+        {(location.pathname.toString()).includes('movie') ? (
+            <p className="text-2xl">Otras peliculas de {directorObject.name}:</p>
+        ) : (
+            <p className="text-2xl">Peliculas</p>
+        )}
+        {/* <p className="text-2xl">{console.log(location.pathname)}</p> */}
             {directedMovies.length > 0 ? (
                 <div className="flex bg-pink-200 rounded-lg border-solid border-indigo-600 flex-wrap border-2">
                     {directedMovies.map((movie, i) => {

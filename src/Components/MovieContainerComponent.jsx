@@ -5,16 +5,17 @@ import NavBar from './NavBar';
 import MovieContainer from './MovieContainer';
 import Footer from './Footer';
 import MovieByIdInfoContainer from "./MovieByIdInfoContainer";
+import SearchBar from "./SearchBar";
 
 export default function MovieContainerComponent() {
 
     return (
         <>
             <NavBar />
+            <SearchBar />
             <MovieByIdInfoContainer />
             <MovieContainer />
             <Footer />
         </>
     )
-    //Despues tengo que mostrar el componente MovieContainer (con un texto encima que diga Otras peliculas del director). Tambien tengo que modificar MovieContainer para que pueda recibir un texto por parametro, tipo para que diga "Otras peliculas de David Lynch" o "Peliculas".
 };

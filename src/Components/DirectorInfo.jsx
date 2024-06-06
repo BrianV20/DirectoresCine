@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { API_KEY, API_URL, IMAGE_PATH, options } from '../constants';
-
+import { DirectorContext } from "../Contexts";
 export default function DirectorInfo() {
     const [director, setDirector] = useState({});
+    const { directorId, setDirectorId } = useContext(DirectorContext);
 
     useEffect(() => {
-        fetch(`${API_URL}/person/309`, options)
+        fetch(`${API_URL}/person/${directorId != 0 ? directorId : 309}`, options)
         .then(response => response.json())
         .then(response => setDirector(response))
     }, []);

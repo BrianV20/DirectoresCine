@@ -5,11 +5,13 @@ import DirectorInfo from './DirectorInfo';
 // import Movie from "./MovieContainer";
 import SearchBar from "./SearchBar";
 import MovieContainer from "./MovieContainer";
+import NavBar from "./NavBar";
 
 export default function DirectorContainerComponent () {
 
     return (
         <>
+        <NavBar />
         <SearchBar />
         <DirectorInfo />
         <MovieContainer />

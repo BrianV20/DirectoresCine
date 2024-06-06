@@ -28,8 +28,8 @@ function App() {
             <Routes>
               <Route path='/' element={<DirectorContainerComponent />} />
               <Route path='director/directorId' element={<DirectorContainerComponent />} />
-              <Route path='movie/:movieId' element={<MovieContainerComponent />} />
-              <Route path='search/searchText' element={<SearchContainerComponent />} />
+              <Route path='/movie/:movieId' element={<MovieContainerComponent />} />
+              <Route path='/search/:searchText' element={<SearchContainerComponent />} />
             </Routes>
           </BrowserRouter>
         </div>
