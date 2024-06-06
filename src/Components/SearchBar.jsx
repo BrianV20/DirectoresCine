@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { API_URL, options, IMAGE_PATH } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../Contexts";
 
 export default function SearchBar() {
     const [searchText, setSearchText] = useState('');
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState({});
     const navigate = useNavigate();
-
+    const { searchResults, setSearchResults } = useContext(SearchContext);
     const search = async () => {
         if(searchText != ''){
             let personResults = await searchSomething("person");
@@ -16,7 +17,8 @@ export default function SearchBar() {
                 movies: movieResults
             };
             setResults(allResults);
-            console.log(allResults);
+            // console.log(allResults);
+            setSearchResults(allResults);
             navigate(`/search/:${searchText}`);
         }
     };
