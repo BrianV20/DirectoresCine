@@ -79,7 +79,7 @@ export default function MovieContainer({ aboveText }) {
                 const data = await response.json();
                 infoOfFilteredMovies.push(data);
             }
-            console.log(infoOfFilteredMovies);
+            // console.log(infoOfFilteredMovies);
             setDirectedMovies(infoOfFilteredMovies);
         };
 

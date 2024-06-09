@@ -12,10 +12,20 @@ export default function SearchBar() {
         if(searchText != ''){
             let personResults = await searchSomething("person");
             let movieResults = await searchSomething("movie");
+
+            // console.log("PERSON RESULTS ⏬");
+            // console.log(personResults);
+
+            let directorsFromResults = await filterDirectors(personResults);
+            let moviesFromResults = await getAllEntitiesFromSearchResults('movie', movieResults);
+            // console.log(moviesFromResults);
+
             let allResults = {
-                persons: personResults,
-                movies: movieResults
+                persons: directorsFromResults,
+                movies: moviesFromResults
             };
+            // console.log("\n\nMOVIES FROM RESULTS ⏬");
+            // console.log(moviesFromResults);
             setResults(allResults);
             // console.log(allResults);
             setSearchResults(allResults);
@@ -23,8 +33,47 @@ export default function SearchBar() {
         }
     };
 
+    const filterDirectors = async (array) => {
+        // console.log(`Page: ${array.page}.\nTotal pages: ${array.total_pages}.\nTotal results: ${array.total_results}.`);
+        let tempArray = await getAllEntitiesFromSearchResults('person', array); //este seria el array de todas las personas que vinieron como resultado.
+        let filteredArray = tempArray.filter(person => person.known_for_department == 'Directing');
+        // console.log("ESTOS SON LOS DIRECTORES ⏬");
+        // console.log(filteredArray);
+        return filteredArray;
+    };
+
+    const getAllEntitiesFromSearchResults = async (entity, array) => {
+        let temp = [];
+        for(let i = 1; i <= array.total_pages; i++){
+            if(i > 1){
+                let response = await fetch(`${API_URL}/search/${entity}?query=${searchText}&include_adult=false&language=en-US&page=${i}`, options);
+                let data = await response.json();
+
+                for(let c = 0; c < data.results.length; c++){
+                    // console.log(`PAGINA NRO ${i}. NRO DE RESULTADOS DE ESTA PAGINA: ${data.results.length}`);
+                    temp.push(data.results[c]);
+                }
+            }
+            else {
+                for(let j = 0; j < array.results.length; j++){
+                    // console.log(`PAGINA NRO ${i}. NRO DE RESULTADOS DE ESTA PAGINA: ${array.results.length}`);
+                    temp.push(array.results[j]);
+                }
+            }
+        }
+
+        // console.log("ESTE SERIA EL RESULTADO DESPUES DE PASAR POR LA FUNCION getAllEntitiesFromSearchResults ⏬");
+        // console.log(temp);
+        return temp;
+    };
+
+    // const filterMovies = async (array) => {
+    //     console.log(`Page: ${array.page}.\nTotal pages: ${array.total_pages}.\nTotal results: ${array.total_results}.`);
+
+    // };
+
     const searchSomething = async (entity) => {
-        let response = await fetch(`${API_URL}/search/${entity}?query=${searchText}`, options);
+        let response = await fetch(`${API_URL}/search/${entity}?query=${searchText}&include_adult=false&language=en-US`, options);
         let data = await response.json();
         // console.log(data.results);
         return data;

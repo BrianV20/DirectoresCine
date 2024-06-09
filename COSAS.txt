@@ -1,5 +1,9 @@
 Manera de encontrar el director de una peli: entrar a movie.credits y buscar el que tenga en department "Directing" y en job "Director"
 
+Manera de poder filtrar los directores de los resultados de una busqueda: 
+    1)Primero tengo que guardar en un array todas las personas que me llegan como resultado de la busqueda. Esto significa ir haciendo fetch de las distintas paginas que me llegan como resultado.
+    2)Tengo que filtrar los directores de entre todos los resultados.
+
 Como encontrar las peliculas de un director:
     1) Acceder a Person - Movie credits con el id del director.
     2) Con el id de cada Movie Credit accedo a cada pelicula a la parte de Credits y busco a las personas que tienen el valor "Directing" en la propiedad "known_for_department" y cuyo id sea el id del director (que ya lo tengo desde un principio).
