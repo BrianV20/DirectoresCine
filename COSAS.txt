@@ -1,3 +1,49 @@
+
+                    IMPORTANTE: Ya fué, voy a quitar la opción de poder buscar (poruqe es demasiado quilombo trabajar con ese sistema de paginado que tienen adheridos los resultados de las búsquedas). En cambio voy a hacer otro componente que sea un combobox o algo así que te permita elegir entre un par de directores de cine que a mí me gustan. Es una boludez pero por Dios, es re frustrante y confuso tratar de consumir esta api para hacer búsquedas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Manera de encontrar el director de una peli: entrar a movie.credits y buscar el que tenga en department "Directing" y en job "Director"
 
 Manera de poder filtrar los directores de los resultados de una busqueda: 
@@ -14,7 +60,9 @@ Como encontrar las peliculas de un director:
     b) De cada resultado (pelicula) voy a acceder al id y voy a hacer un fetch de lo siguiente fetch('https://api.themoviedb.org/3/movie/219/credits', options). En este caso la pelicula es Volver (2006).
     c) En ese resultado busco a la persona que tenga el id del director (309), el valor "Directing" en la propiedad "known_for_department" y el valor "Director" en la propiedad "job" (esta propiedad verificar si existe, la misma ayuda a tener un resultado más especifico porque a veces un mismo director puede también tener el "job" de writer, screenplay etc).
 
-
+ I M P O R T A N T E : DEBO CAMBIAR TODA LA LOGICA DE LA BUSQUEDA. SEARCHBAR DEBERÁ buscar lo que le llega por parametro y asignará lo que devuelva esa búsqueda a searchResults (el contexto). Ese objeto (results, page, total_pages) lo recibe ResultsContainer y muestra los resultados pertinentes (Directors o Movies) con un sistema de paginado. Cuando se haga click en la página 2 por ejemplo, se ejecutará un useEffect que hará un fetch al mismo endpoint pero con el parametro page=2. Por lo tanto ResultsContainer debe recibir de alguna manera el endpoint entero al que SearchBar hace fetch, además de tener un estado con el nro de la página actual para poder usar el useEffect y actualizar los resultados.
+ o sea: a) Realizo la búsqueda en SearchBar y guardo el resultado en un objeto con las propiedades persons y movies (debo hacer dos fetch entonces en SearchBar).
+        b) ResultsContainer recibe ese objeto y muestra lo pertinente...
 
 Componentes: 
             DirectorContainerComponent: (Componente que se renderizará en la ruta director/directorId). TODO. Falta estilo.
