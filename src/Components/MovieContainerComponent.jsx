@@ -5,14 +5,14 @@ import NavBar from './NavBar';
 import MovieContainer from './MovieContainer';
 import Footer from './Footer';
 import MovieByIdInfoContainer from "./MovieByIdInfoContainer";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 
 export default function MovieContainerComponent() {
 
     return (
         <>
             <NavBar />
-            <SearchBar />
+            {/* <SearchBar /> */}
             <MovieByIdInfoContainer />
             <MovieContainer />
             <Footer />

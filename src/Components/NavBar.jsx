@@ -5,8 +5,9 @@ export default function NavBar() {
 
     return (
         <>
-            <div className="bg-blue-950 text-white text-3xl text-center py-2">
-                <p onClick={() => navigate('/')}>Esta es la navbar</p>
+            <div className="bg-[#FFF] lg:text-5xl ml-4 py-3 text-[#2a5ac3] font-bold">
+                <p onClick={() => navigate('/')} className="inline-block">Directores de cine</p>
+                <p className="inline-block lg:text-2xl ml-2">(un par que me gustan nomás)</p>
             </div>
         </>
     )

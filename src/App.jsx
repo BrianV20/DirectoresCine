@@ -1,13 +1,13 @@
 import { useState, useEffect, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import SearchBar from './Components/SearchBar';
+// import SearchBar from './Components/SearchBar';
 import DirectorInfo from './Components/DirectorInfo';
 import { DirectorContext } from './Contexts';
 import Movie from './Components/MovieContainer';
 import DirectorContainerComponent from './Components/DirectorContainerComponent';
 import MovieContainerComponent from './Components/MovieContainerComponent';
-import SearchContainerComponent from './Components/SearchContainerComponent';
+// import SearchContainerComponent from './Components/old/SearchContainerComponent';
 
 function App() {
   // const [prueba, setPrueba] = useState();
@@ -29,7 +29,7 @@ function App() {
               <Route path='/' element={<DirectorContainerComponent />} />
               <Route path='director/directorId' element={<DirectorContainerComponent />} />
               <Route path='/movie/:movieId' element={<MovieContainerComponent />} />
-              <Route path='/search/:searchText' element={<SearchContainerComponent />} />
+              {/* <Route path='/search/:searchText' element={<SearchContainerComponent />} /> */}
             </Routes>
           </BrowserRouter>
         </div>
