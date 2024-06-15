@@ -27,7 +27,7 @@ export default function MovieByIdInfoContainer() {
             const response = await fetch(`${API_URL}/movie/${movieId}/credits`, options);
             const data = await response.json();
             const dir = data.crew.find(person => person.id == directorId);
-            if(dir != undefined){
+            if (dir != undefined) {
                 setMovieDirector(dir);
             }
             else {
@@ -43,23 +43,29 @@ export default function MovieByIdInfoContainer() {
 
     return (
         <>
-        <div className="bg-purple-200 border-2 border-black rounded-xl flex justify-start">
-            <div className="bg-purple-400">
-                <img src={`${IMAGE_PATH}/${movie.poster_path}`} alt="" className="w-[16rem] rounded-xl" />
-            </div>
-            <div className="bg-purple-600 flex flex-col">
-                {movie != undefined ? (
-                    <>
-                        <p>{movie.title} ({getYear(movie.release_date)})</p>
-                        <p>Overview: {movie.overview}</p>
-                        <p>Directed by: {movieDirector != undefined ? movieDirector.name : 'loading..'}</p>
-                    </>
-                ) : ''}
-            </div>
-            {/* {movie != undefined ? (
+            <div className="rounded-xl flex justify-start mb-[2rem]">
+                <img src={`${IMAGE_PATH}/${movie.poster_path}`} alt="" className="lg:w-[18rem] lg:max-h-[25rem] lg:mr-[2rem] rounded-3xl min-w-[8rem] max-h-[12rem] mr-[0.5rem]" />
+                <div className="flex flex-col gap-y-5 max-w-[60%]">
+                    {movie != undefined ? (
+                        <>
+                            <p className="lg:text-4xl text-3xl">{movie.title} ({getYear(movie.release_date)})</p>
+                            {/* <p className="text-xl">Overview: {movie.overview}</p> */}
+                            <div className="text-xl">
+                                <p className="font-semibold">Overview:</p>
+                                <p>{movie.overview}</p>
+                            </div>
+                            {/* <p className="text-xl">Directed by: {movieDirector != undefined ? movieDirector.name : 'loading..'}</p> */}
+                            <div className="text-xl">
+                                <p className="font-semibold">Directed by:</p>
+                                <p>{movieDirector != undefined ? movieDirector.name : 'loading..'}</p>
+                            </div>
+                        </>
+                    ) : ''}
+                </div>
+                {/* {movie != undefined ? (
                 <p>{movie.title}</p>
             ) : ''} */}
-        </div>
+            </div>
         </>
     )
 };

@@ -13,9 +13,11 @@ export default function MovieContainerComponent() {
         <>
             <NavBar />
             {/* <SearchBar /> */}
-            <MovieByIdInfoContainer />
-            <MovieContainer />
-            <Footer />
+            <div className="lg:mx-[12rem]">
+                <MovieByIdInfoContainer />
+                <MovieContainer />
+                <Footer />
+            </div>
         </>
     )
 };

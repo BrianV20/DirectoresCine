@@ -122,25 +122,25 @@ export default function MovieContainer({ aboveText }) {
     return (
         <>
             {(location.pathname.toString()).includes('movie') ? (
-                <p className="text-2xl">Otras peliculas de {directorObject.name}:</p>
+                <p className="text-2xl">More movies by {directorObject.name}:</p>
             ) : (
-                <p className="text-2xl">Peliculas</p>
+                <p className="text-2xl">Movies</p>
             )}
             {/* <p className="text-2xl">{console.log(location.pathname)}</p> */}
             {directedMovies.length > 0 ? (
-                <div className="flex rounded-lg border-solid border-indigo-600 border-2 overflow-auto gap-x-[1rem]">
+                <div className="flex rounded-lg overflow-auto gap-x-[1rem]">
                     {directedMovies.map((movie, i) => {
                         return (
-                            <>
+                            <div key={movie.title + i}>
                                 {movie.poster_path != undefined ? (
                                     <Movie movieInfo={{
                                         id: movie.id,
                                         title: movie.title,
                                         year: movie.release_date,
                                         posterPath: movie.poster_path
-                                    }} key={movie.title + i} />
+                                    }} />
                                 ) : ''}
-                            </>
+                            </div>
                             // <div className="flex flex-col border-solid border-black p-1 mx-2 my-4 border-2" key={movie.title + i}>
                             //     <p>Id: {movie.id}.</p>
                             //     <p>Titulo: {movie.title}</p>
@@ -148,7 +148,7 @@ export default function MovieContainer({ aboveText }) {
                         )
                     })}
                 </div>
-            ) : 'loading...'}
+            ) : 'loading movies...'}
             {/* {console.log(movieCredits)} */}
             {/* <button onClick={() => setDirectorId(309)}>
                 Id 309

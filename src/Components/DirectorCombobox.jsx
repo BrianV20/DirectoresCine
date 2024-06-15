@@ -8,12 +8,12 @@ export default function DirectorCombobox(){
         console.log(e.target.value);
         if(directorId != e.target.value){
             setDirectorId(e.target.value);
-            console.log("se seteo");
+            // console.log("se seteo");
         }
     };
 
     return (
-        <div className="flex justify-end lg:text-2xl">
+        <div className="flex justify-end lg:text-2xl mb-[2rem]">
             <div className="bg-[#5e2569] w-fit px-4 py-2 rounded-md">
                 <div className="flex justify-end mr-2">
                     <p className="mr-1 text-white">Selected director:</p>

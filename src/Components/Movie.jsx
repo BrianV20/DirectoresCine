@@ -7,7 +7,7 @@ export default function Movie({ movieInfo }) {
     return (
         <>
             <Link to={`/movie/${movieInfo.id}`}>
-                <div className="border-solid border-black my-4 border-2 lg:w-[10rem] flex flex-col text-center flex-nowrap lg:h-[16rem]">
+                <div className="my-4 lg:w-[10rem] flex flex-col text-center flex-nowrap lg:h-[16rem]">
                     {/* <p>Id: {movieInfo.id}</p> */}
                     <img src={`${IMAGE_PATH}/${movieInfo.posterPath}`} alt={movieInfo.title + ' cover'} className="lg:w-[8rem] lg:h-[12.5rem] mx-auto rounded-md" />
                     {movieInfo.title.length > 30 ? (

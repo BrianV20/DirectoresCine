@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <DirectorContext.Provider value={{ directorId, setDirectorId }}>
-        <div className='CONTENEDOR DE LAS COSAS PARA PONER EL FONDO DE LA IMAGEN DEL DIRECTOR'>
+        {/* <div className='CONTENEDOR DE LAS COSAS PARA PONER EL FONDO DE LA IMAGEN DEL DIRECTOR'> */}
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<DirectorContainerComponent />} />
@@ -32,7 +32,7 @@ function App() {
               {/* <Route path='/search/:searchText' element={<SearchContainerComponent />} /> */}
             </Routes>
           </BrowserRouter>
-        </div>
+        {/* </div> */}
       </DirectorContext.Provider>
     </div>
   )

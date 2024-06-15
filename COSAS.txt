@@ -87,3 +87,6 @@ Componentes:
 Colores: principal: #231942 #301934  #003262
          secundario: #309BFF
          terciario: #FFFFFF
+
+
+Por hacer: Ver el video ese de youtube sobre cargar las imagenes (lazy load), estilar los loading...
