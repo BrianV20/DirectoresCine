@@ -2,9 +2,9 @@ export default function Footer() {
 
     return (
         <>
-        <div className="bg-blue-900 text-white px-4 py-5 text-center">
-            <p>Este es el footer</p>
-        </div>
+        <footer className="bg-blue-900 text-white px-6 py-4 text-center">
+            <p className="text-xs mt-2">© 2024 Brian Velázquez</p>
+        </footer>
         </>
     )
 };

@@ -39,53 +39,39 @@ export default function DirectorInfo() {
     // };
 
     return (
-        <>
-            {director != undefined ? (
-                <div className="flex">
-                    <img src={profiles.length > 1 ? `${IMAGE_PATH}/${profiles[0].file_path}` : ''} alt="" className="lg:w-[18rem] lg:max-h-[25rem] lg:mr-[2rem] rounded-3xl w-[8rem] max-h-[12rem] mr-[0.5rem]" />
+<>
+    {director !== undefined ? (
+        <div className="flex flex-col lg:flex-row items-center lg:items-start">
+            <img 
+                src={profiles.length > 1 ? `${IMAGE_PATH}/${profiles[0].file_path}` : ''} 
+                alt={director.name} 
+                className="rounded-3xl w-32 lg:w-72 max-h-48 lg:max-h-96 mr-2 lg:mr-8 mb-4 lg:mb-0 object-cover" 
+            />
 
-                    <div className="flex flex-col">
-                        <p className="lg:text-6xl text-3xl">{director.name}</p>
-                        {director.biography != undefined && (
-                            <>
-                                <p className="lg:text-[1.5rem] lg:leading-10 mt-4">
-                                    {showFullBio || director.biography.length <= 1000
-                                        ? director.biography
-                                        : director.biography.substring(0, 1000) + '...'}
-                                </p>
-                                {director.biography.length > 1000 && (
-                                    <button onClick={toggleBio} className="font-bold text-[#2a5ac3] lg:text-[1.5rem] lg:leading-10">
-                                        {showFullBio ? 'See less >' : 'See more >'}
-                                    </button>
-                                )}
-                            </>
+            <div className="flex flex-col">
+                <p className="text-3xl lg:text-6xl font-semibold">{director.name}</p>
+                {director.biography !== undefined && (
+                    <>
+                        <p className="text-base lg:text-xl leading-normal lg:leading-relaxed mt-4">
+                            {showFullBio || director.biography.length <= 1000
+                                ? director.biography
+                                : `${director.biography.substring(0, 1000)}...`}
+                        </p>
+                        {director.biography.length > 1000 && (
+                            <button 
+                                onClick={toggleBio} 
+                                className="mt-4 text-blue-600 font-bold text-lg hover:text-blue-800 transition-colors duration-300"
+                            >
+                                {showFullBio ? 'See less >' : 'See more >'}
+                            </button>
                         )}
-                    </div>
-                </div>
-                // <div>
-                //     <div className="flex">
-                //         <img src={profiles.length > 1 ? `${IMAGE_PATH}/${profiles[0].file_path}` : ''} alt="" className="lg:w-[18rem]" />
-                //         <div></div>
-                //         <p className="lg:text-8xl text-center">{director.name}</p>
-                //     </div>
-                //     <div>
-                //         {director.biography != undefined && (
-                //             <>
-                //                 <p className="lg:text-[1.5rem] lg:leading-10 mt-4">
-                //                     {showFullBio || director.biography.length <= 1000
-                //                         ? director.biography
-                //                         : director.biography.substring(0, 1000) + '...'}
-                //                 </p>
-                //                 {director.biography.length > 1000 && (
-                //                     <button onClick={toggleBio} className="font-bold text-[#2a5ac3] lg:text-[1.5rem] lg:leading-10">
-                //                         {showFullBio ? 'See less >' : 'See more >'}
-                //                     </button>
-                //                 )}
-                //             </>
-                //         )}
-                //     </div>
-                // </div>
-            ) : ''}
-        </>
+                    </>
+                )}
+            </div>
+        </div>
+    ) : (
+        <p>No director information available.</p>
+    )}
+</>
     )
 };
